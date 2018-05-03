@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 
-const ImageButton = ({ title, onPress }) => (
+const ImageTapper = ({ title, onPress }) => (
   <Button
     title={title}
     onPress={onPress}
@@ -16,4 +16,4 @@ const ImageButton = ({ title, onPress }) => (
   </Button>
 );
 
-export { ImageButton };
+export { ImageTapper };

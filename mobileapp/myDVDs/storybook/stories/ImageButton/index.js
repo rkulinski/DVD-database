@@ -1,13 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { action } from  '@storybook/addon-actions';
-import { ImageButton } from '../../../src/components';
+import { ImageTapper } from '../../../src/components';
 
-storiesOf('ImageButton', module)
+storiesOf('ImageTapper', module)
   .add('with text', () => (
-    <ImageButton
+    <ImageTapper
       title="Story Button"
       onPress={action('button-click')}
     >
-    </ImageButton>
+    </ImageTapper>
   ));
