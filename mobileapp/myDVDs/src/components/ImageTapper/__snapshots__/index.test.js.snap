@@ -5,7 +5,9 @@ exports[`renders correctly 1`] = `
   style={
     Array [
       Object {
-        "width": "48%",
+        "height": 200,
+        "marginBottom": 5,
+        "width": "49%",
       },
     ]
   }
@@ -41,6 +43,7 @@ exports[`renders correctly 1`] = `
       style={
         Array [
           Object {
+            "height": 180,
             "width": "100%",
           },
         ]
@@ -59,9 +62,7 @@ exports[`renders correctly 1`] = `
           },
         ]
       }
-    >
-      My first button
-    </Text>
+    />
   </View>
 </View>
 `;
