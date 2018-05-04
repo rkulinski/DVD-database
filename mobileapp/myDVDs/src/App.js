@@ -23,7 +23,7 @@ export default class App extends Component {
       <Provider store={createStore(reducers)}>
         <View style={styles.container}>
           <Text style={styles.welcome}>
-            React Native template
+            React Native template by rkstudio
           </Text>
           <Text style={styles.instructions}>
             Includes storybook and redux
