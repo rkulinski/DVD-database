@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   Text,
   Image,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 
@@ -20,7 +20,7 @@ const ImageTapper = ({ title, onPress, imgSrc }) => (
         reziseMode="stretch"
       />
       <Text style={[styles.imageCaption]}>
-        My first button
+        {title}
       </Text>
     </TouchableOpacity>
   </View>
@@ -28,15 +28,18 @@ const ImageTapper = ({ title, onPress, imgSrc }) => (
 
 const styles = StyleSheet.create({
   container: {
-    width: '48%'
+    width: '49%',
+    height: 200,
+    marginBottom: 5,
   },
   image: {
-    width: '100%'
+    width: '100%',
+    height: 180,
   },
   imageCaption: {
     paddingTop: 5,
     color: 'black',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 });
 
