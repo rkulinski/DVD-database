@@ -62,7 +62,9 @@ exports[`renders correctly 1`] = `
           },
         ]
       }
-    />
+    >
+      title
+    </Text>
   </View>
 </View>
 `;

@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 
 const ImageTapper = ({ title, onPress, imgSrc }) => (
@@ -25,6 +26,12 @@ const ImageTapper = ({ title, onPress, imgSrc }) => (
     </TouchableOpacity>
   </View>
 );
+
+ImageTapper.propTypes = {
+  title: PropTypes.string.isRequired,
+  imgSrc: PropTypes.number,
+  onPress: PropTypes.func
+};
 
 const styles = StyleSheet.create({
   container: {
