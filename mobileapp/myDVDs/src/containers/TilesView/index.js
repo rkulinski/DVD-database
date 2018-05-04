@@ -22,8 +22,9 @@ const actorNames = [
 ];
 
 class Tiles extends Component {
-
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View style={[styles.container]}>
         <View>
@@ -38,6 +39,9 @@ class Tiles extends Component {
                 key={name}
                 title={name}
                 imgSrc={img}
+                onPress={() =>
+                  navigate('MoviesList', { actor: name })
+                }
               />
             ))}
           </View>
