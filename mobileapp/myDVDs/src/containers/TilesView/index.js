@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   ScrollView,
   StyleSheet,
   Platform,
 } from 'react-native';
-import { ImageTapper } from '../../components';
+import PropTypes from 'prop-types';
+import {
+  ImageTapper,
+  Header,
+} from '../../components';
 import ArnoldImg from '../../assets/tilesImages/Arnold.jpg';
 import StalloneImg from '../../assets/tilesImages/Stallone.jpg';
 import JCVDImg from '../../assets/tilesImages/JCVD.jpg';
@@ -27,11 +30,9 @@ class Tiles extends Component {
 
     return (
       <View style={[styles.container]}>
-        <View>
-          <Text>
-            Select actor
-          </Text>
-        </View>
+        <Header
+          text="My DVD's list"
+        />
         <ScrollView>
           <View style={[styles.tilesView]}>
             {actorNames.map(({name, img}) => (
@@ -51,9 +52,15 @@ class Tiles extends Component {
   }
 }
 
+Tiles.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func
+  })
+};
+
 const styles = StyleSheet.create({
   container: {
-    paddingTop: (Platform.OS === 'ios') ? 20 : 0,
+    paddingTop: (Platform.OS === 'ios') ? 0 : 0,
     flex: 1,
   },
   tilesView: {
