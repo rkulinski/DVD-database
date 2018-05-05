@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Header component renders as expected 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+>
+  <Component
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingBottom": 15,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 15,
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontSize": 37.5,
+          },
+        ]
+      }
+    >
+      ⚬ 
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "marginLeft": "auto",
+            "paddingRight": 10,
+          },
+        ]
+      }
+    >
+      ❯
+    </Text>
+  </Component>
+</TouchableOpacity>
+`;

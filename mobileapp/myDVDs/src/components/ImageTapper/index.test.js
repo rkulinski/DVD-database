@@ -1,9 +1,13 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { ImageTapper } from './';
 
-import renderer from 'react-test-renderer';
 
-test('renders correctly', () => {
-  const tree = renderer.create(<ImageTapper title="title" />).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('Testing Header component', () => {
+  it('renders as expected', () => {
+    const wrapper = shallow(
+      <ImageTapper title="title" />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 });
