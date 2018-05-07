@@ -5,10 +5,12 @@ import {
   StyleSheet,
   Platform,
 } from 'react-native';
+import firebase from 'firebase';
 import PropTypes from 'prop-types';
 import {
   ImageTapper,
   Header,
+  LogoutSection,
 } from '../../components';
 import ArnoldImg from '../../assets/tilesImages/Arnold.jpg';
 import StalloneImg from '../../assets/tilesImages/Stallone.jpg';
@@ -47,6 +49,11 @@ class Tiles extends Component {
               />
             ))}
           </View>
+          <LogoutSection
+            onLogout={() => {
+              firebase.auth().signOut();
+            }}
+          />
         </ScrollView>
       </View>
     );
