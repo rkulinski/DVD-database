@@ -27,11 +27,12 @@ const actorNames = [
 class Tiles extends Component {
   render() {
     const { navigate } = this.props.navigation;
+    const { params } = this.props.navigation.state;
 
     return (
       <View style={[styles.container]}>
         <Header
-          text="My DVD's list"
+          text={`My DVD's list (${params.user})`}
         />
         <ScrollView>
           <View style={[styles.tilesView]}>
