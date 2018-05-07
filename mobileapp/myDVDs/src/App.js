@@ -12,10 +12,30 @@ import LoadingView from './containers/LoadingView';
 const store = createStore(reducers);
 
 const Navigator = StackNavigator({
-  LoadingView: { screen: LoadingView },
-  LoginForm: { screen: LoginForm },
-  Tiles: { screen: Tiles },
-  MoviesList: { screen: MoviesList },
+  LoadingView: {
+    screen: LoadingView,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  LoginForm: {
+    screen: LoginForm,
+    navigationOptions: {
+      header: null,
+    }},
+  Tiles: {
+    screen: Tiles,
+    navigationOptions: {
+      title: 'Actors',
+      headerLeft: null,
+    }
+  },
+  MoviesList: {
+    screen: MoviesList,
+    navigationOptions: {
+      title: 'Movie list',
+    }
+  },
 });
 
 export default class App extends Component {
