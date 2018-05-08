@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -6,29 +7,28 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import PropTypes from 'prop-types';
-import firebaseConfig from '../../../firebase.config';
+import { initializeFirebase, isUserLoggedIn } from '../../store/actions/authAction';
 import units from '../../utils/unitsCalculation';
 
 
 class LoadingView extends Component {
   constructor() {
     super();
-    this.state = {
-      LoggedIn: false,
-    };
   }
 
   componentWillMount() {
     const { navigate } = this.props.navigation;
+    const { initializeFirebase, isUserLoggedIn } = this.props;
 
-    firebase.initializeApp(firebaseConfig);
+    initializeFirebase();
+
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ loggedIn: true });
-        navigate('Tiles', { user: user.email });
+        isUserLoggedIn(true, user.email);
+        navigate('Tiles');
       } else {
-        this.setState({ loggedIn: false });
+        isUserLoggedIn(false, '');
         navigate('LoginForm');
       }
     });
@@ -47,6 +47,11 @@ class LoadingView extends Component {
 
 LoadingView.propTypes = {
   onPress: PropTypes.func,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }),
+  initializeFirebase: PropTypes.func,
+  isUserLoggedIn: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -61,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoadingView;
+export default connect(null, { initializeFirebase, isUserLoggedIn })(LoadingView);

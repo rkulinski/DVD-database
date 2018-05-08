@@ -13,6 +13,7 @@ describe('Authentication Reducers Tests', () => {
     expect(reducerResponse).toEqual({
       loading: true,
       errorMsg: '',
+      isLogged: false,
     });
   });
   it('should handle AUTH_USER_LOGIN_SUCCESS', () => {
@@ -26,6 +27,7 @@ describe('Authentication Reducers Tests', () => {
       email: testEmail,
       errorMsg: '',
       loading: false,
+      isLogged: true,
     });
   });
   it('should handle AUTH_USER_LOGIN_FAIL', () => {
@@ -40,6 +42,17 @@ describe('Authentication Reducers Tests', () => {
     expect(reducerResponse).toEqual({
       errorMsg: testErrorMsg,
       loading: false,
+      isLogged: false,
+    });
+  });
+  it('should handle AUTH_IS_USER_LOGGED_IN', () => {
+    const reducerResponse = authReducer([], {
+      type: TYPES.AUTH_IS_USER_LOGGED_IN,
+      payload: { flag: true, user: testEmail },
+    });
+    expect(reducerResponse).toEqual({
+      isLogged: true,
+      email: testEmail,
     });
   });
   it('should handle unknown action type', () => {
@@ -50,6 +63,7 @@ describe('Authentication Reducers Tests', () => {
       email: '',
       loading: false,
       errorMsg: '',
+      isLogged: false,
     });
   });
 });
