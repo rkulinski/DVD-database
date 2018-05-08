@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 import { StackNavigator } from 'react-navigation';
-import reducers from './reducers';
+import reducers from './store/reducers';
 import Tiles from './containers/TilesView';
 import MoviesList from './containers/MoviesList';
 import LoginForm from './containers/LoginForm';
 import LoadingView from './containers/LoadingView';
 
-
-const store = createStore(reducers);
 
 const Navigator = StackNavigator({
   LoadingView: {
@@ -40,6 +39,8 @@ const Navigator = StackNavigator({
 
 export default class App extends Component {
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
     return (
       <Provider store={store}>
         <Navigator/>
