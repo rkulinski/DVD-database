@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Button,
   Text,
   StyleSheet,
 } from 'react-native';
-import firebase from 'firebase';
 import PropTypes from 'prop-types';
+import { loginUser } from '../../store/actions/authAction';
 import { Input, Spinner } from '../../components';
 import units from '../../utils/unitsCalculation';
 
@@ -17,47 +18,18 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      error: '',
-      loading: false,
     };
 
     this.loginUser = this.loginUser.bind(this);
-    this.onLoginSuccess = this.onLoginSuccess.bind(this);
-    this.onLoginFail = this.onLoginFail.bind(this);
   }
 
   loginUser() {
     const { email, password } = this.state;
-
-    this.setState({ error: '', loading: true });
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.onLoginSuccess();
-      })
-      .catch(() => {
-        this.onLoginFail();
-      });
-  }
-
-  onLoginSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      loading: false,
-      error: '',
-    });
-  }
-
-  onLoginFail() {
-    this.setState({
-      error: 'Incorrect credentials',
-      loading: false,
-    });
+    this.props.loginUser(email, password);
   }
 
   renderButton() {
-    if (this.state.loading) {
+    if (this.props.authLoading) {
       return <Spinner size="small"/>;
     }
 
@@ -85,7 +57,7 @@ class LoginForm extends Component {
           secureTextEntry
         />
         <Text style={[styles.error]}>
-          {this.state.error}
+          {this.props.authError}
         </Text>
         {this.renderButton()}
       </View>
@@ -95,6 +67,9 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   onPress: PropTypes.func,
+  authLoading: PropTypes.bool,
+  loginUser: PropTypes.func,
+  authError: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -112,4 +87,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginForm;
+const mapStateToProps = (state) => {
+  return {
+    authLoading: state.auth.loading,
+    authEmail: state.auth.email,
+    authError: state.auth.errorMsg,
+  };
+};
+
+export default connect(mapStateToProps, { loginUser })(LoginForm);
