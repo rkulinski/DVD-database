@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   ScrollView,
@@ -29,12 +30,11 @@ const actorNames = [
 class Tiles extends Component {
   render() {
     const { navigate } = this.props.navigation;
-    const { params } = this.props.navigation.state;
 
     return (
       <View style={[styles.container]}>
         <Header
-          text={`My DVD's list (${params.user})`}
+          text={`My DVD's list (${this.props.userMail})`}
         />
         <ScrollView>
           <View style={[styles.tilesView]}>
@@ -63,7 +63,8 @@ class Tiles extends Component {
 Tiles.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func
-  })
+  }),
+  userMail: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -82,4 +83,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Tiles;
+const mapStateToProps = (state) => {
+  return {
+    userMail: state.auth.email,
+  };
+};
+
+export default connect(mapStateToProps)(Tiles);
