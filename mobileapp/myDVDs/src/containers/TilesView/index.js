@@ -19,12 +19,13 @@ import JCVDImg from '../../assets/tilesImages/JCVD.jpg';
 import Steven from '../../assets/tilesImages/Steven.jpg';
 import Chuck from '../../assets/tilesImages/Chuck.jpg';
 
+
 const actorNames = [
-  { name:'Arnold Schwarzenegger', img: ArnoldImg},
-  { name:'Sylwester Stallone', img: StalloneImg},
-  { name:'Jean Claude Van Damme', img: JCVDImg},
-  { name:'Steven Seagal', img: Steven},
-  { name:'Chuck Norris', img: Chuck},
+  { id:'schwarzenegger' ,name:'Arnold Schwarzenegger', img: ArnoldImg},
+  { id:'stallone' ,name:'Sylwester Stallone', img: StalloneImg},
+  { id:'vanDamme' ,name:'Jean Claude Van Damme', img: JCVDImg},
+  { id:'seagal' ,name:'Steven Seagal', img: Steven},
+  { id:'norris' ,name:'Chuck Norris', img: Chuck},
 ];
 
 class Tiles extends Component {
@@ -38,13 +39,13 @@ class Tiles extends Component {
         />
         <ScrollView>
           <View style={[styles.tilesView]}>
-            {actorNames.map(({name, img}) => (
+            {actorNames.map(({id, name, img}) => (
               <ImageTapper
                 key={name}
                 title={name}
                 imgSrc={img}
                 onPress={() =>
-                  navigate('MoviesList', { actor: name })
+                  navigate('MoviesList', { actor: name, actorId: id })
                 }
               />
             ))}
@@ -62,7 +63,7 @@ class Tiles extends Component {
 
 Tiles.propTypes = {
   navigation: PropTypes.shape({
-    navigate: PropTypes.func
+    navigate: PropTypes.func,
   }),
   userMail: PropTypes.string,
 };
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   },
   tileWrapper: {
     flex: 2,
-  }
+  },
 });
 
 const mapStateToProps = (state) => {

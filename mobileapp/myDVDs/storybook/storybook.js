@@ -4,8 +4,8 @@ import { getStorybookUI, configure } from '@storybook/react-native';
 
 // import stories
 configure(() => {
-  require('./stories/LoginForm');
   require('./stories/FilteredList');
+  require('./stories/LoginForm');
   require('./stories/ImageTapper');
 }, module);
 

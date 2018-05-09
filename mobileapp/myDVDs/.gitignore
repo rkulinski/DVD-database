@@ -59,4 +59,4 @@ buck-out/
 *.jsbundle
 
 #DB config
-firebase.config.json
+firebase_local.config.json

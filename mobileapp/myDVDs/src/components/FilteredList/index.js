@@ -3,6 +3,8 @@ import {
   View,
   FlatList,
   TextInput,
+  TouchableOpacity,
+  Text,
   StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -21,6 +23,10 @@ class FilteredList extends Component {
     this.updateList = this.updateList.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({filteredList: nextProps.itemsArray});
+  }
+
   updateList(newSearchTerm) {
     const matchesFilter = new RegExp(newSearchTerm, 'i');
     const newList = this.props.itemsArray.filter(item => !newSearchTerm || matchesFilter.test(item));
@@ -34,12 +40,22 @@ class FilteredList extends Component {
   render() {
     return (
       <View style={[styles.view]}>
-        <TextInput
-          placeholder="Search..."
-          value={this.state.searchTerm}
-          onChangeText={this.updateList}
-          style={[styles.search]}
-        />
+        <View style={[styles.serchView]}>
+          <TextInput
+            placeholder="Search..."
+            value={this.state.searchTerm}
+            onChangeText={this.updateList}
+            style={[styles.search]}
+          />
+          <TouchableOpacity
+            style={[styles.addButton]}
+            onPress={this.props.onPress}
+          >
+            <Text style={[styles.addText]}>
+              +
+            </Text>
+          </TouchableOpacity>
+        </View>
         <FlatList
           data={this.state.filteredList}
           renderItem={({item}) => <ItemList item={item}/>}
@@ -50,18 +66,30 @@ class FilteredList extends Component {
 }
 
 FilteredList.propTypes = {
-  itemsArray: PropTypes.arrayOf(PropTypes.string)
+  itemsArray: PropTypes.arrayOf(PropTypes.string),
+  onPress: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
   view: {
     width: '100%',
   },
+  serchView: {
+    flexDirection: 'row',
+  },
+  addButton: {
+    width: '20%',
+    justifyContent: 'center',
+  },
+  addText: {
+    textAlign: 'center',
+    fontSize: 30,
+  },
   search: {
+    width: '80%',
     height: 40,
     padding: 10,
     marginLeft: 5,
-    marginRight: 5,
     fontSize: 5 * units.vw,
     borderColor: 'black',
     borderWidth: 1,

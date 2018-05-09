@@ -10,26 +10,63 @@ exports[`Testing FilteredList component Default props renders as expected 1`] = 
     ]
   }
 >
-  <TextInput
-    allowFontScaling={true}
-    onChangeText={[Function]}
-    placeholder="Search..."
+  <Component
     style={
       Array [
         Object {
-          "borderColor": "black",
-          "borderRadius": 5,
-          "borderWidth": 1,
-          "fontSize": 37.5,
-          "height": 40,
-          "marginLeft": 5,
-          "marginRight": 5,
-          "padding": 10,
+          "flexDirection": "row",
         },
       ]
     }
-    value=""
-  />
+  >
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Search..."
+      style={
+        Array [
+          Object {
+            "borderColor": "black",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "fontSize": 37.5,
+            "height": 40,
+            "marginLeft": 5,
+            "padding": 10,
+            "width": "80%",
+          },
+        ]
+      }
+      value=""
+    />
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Array [
+          Object {
+            "justifyContent": "center",
+            "width": "20%",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontSize": 30,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        +
+      </Text>
+    </TouchableOpacity>
+  </Component>
   <FlatList
     disableVirtualization={false}
     horizontal={false}
