@@ -24,7 +24,7 @@ export const loginUserSuccess = (user) => {
 export const loginUserFail = (error) => {
   return {
     type: AUTH_USER_LOGIN_FAIL,
-    payload: { error }
+    payload: { error },
   };
 };
 
