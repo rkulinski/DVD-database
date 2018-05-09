@@ -1,11 +1,18 @@
 import {
   DB_ADD_MOVIE,
+  DB_SELECT_ACTOR,
 } from '../types';
 
 const INITIAL_STATE = {
   actors: {
     schwarzenegger: [],
+    stallone: [],
+    seagal: [],
+    vanDamme: [],
+    norris: [],
   },
+  selectedActorId: '',
+  selectedActorName: '',
 };
 
 export default (state=INITIAL_STATE, action) => {
@@ -20,6 +27,12 @@ export default (state=INITIAL_STATE, action) => {
           action.payload.movieTitle,
         ],
       },
+    };
+  case DB_SELECT_ACTOR:
+    return {
+      ...state,
+      selectedActorId: action.payload.actorId,
+      selectedActorName: action.payload.actor,
     };
   default:
     return state;

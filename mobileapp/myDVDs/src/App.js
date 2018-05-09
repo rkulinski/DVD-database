@@ -8,6 +8,7 @@ import Tiles from './containers/TilesView';
 import MoviesList from './containers/MoviesList';
 import LoginForm from './containers/LoginForm';
 import LoadingView from './containers/LoadingView';
+import AddMovieView from './containers/AddMovie';
 
 
 const Navigator = StackNavigator({
@@ -27,13 +28,19 @@ const Navigator = StackNavigator({
     navigationOptions: {
       title: 'Actors',
       headerLeft: null,
-    }
+    },
   },
   MoviesList: {
     screen: MoviesList,
     navigationOptions: {
       title: 'Movie list',
-    }
+    },
+  },
+  AddMovie: {
+    screen: AddMovieView,
+    navigationOptions: {
+      title: 'Add movie',
+    },
   },
 });
 
