@@ -13,6 +13,7 @@ import {
   Header,
   LogoutSection,
 } from '../../components';
+import { selectActor } from '../../store/actions/dbAction';
 import ArnoldImg from '../../assets/tilesImages/Arnold.jpg';
 import StalloneImg from '../../assets/tilesImages/Stallone.jpg';
 import JCVDImg from '../../assets/tilesImages/JCVD.jpg';
@@ -29,9 +30,19 @@ const actorNames = [
 ];
 
 class Tiles extends Component {
-  render() {
+  constructor() {
+    super();
+
+    this.onActorSelect = this.onActorSelect.bind(this);
+  }
+  onActorSelect(actorId, actor) {
     const { navigate } = this.props.navigation;
 
+    this.props.selectActor(actorId, actor);
+    navigate('MoviesList');
+  }
+
+  render() {
     return (
       <View style={[styles.container]}>
         <Header
@@ -44,9 +55,7 @@ class Tiles extends Component {
                 key={name}
                 title={name}
                 imgSrc={img}
-                onPress={() =>
-                  navigate('MoviesList', { actor: name, actorId: id })
-                }
+                onPress={() => this.onActorSelect(id, name)}
               />
             ))}
           </View>
@@ -66,6 +75,7 @@ Tiles.propTypes = {
     navigate: PropTypes.func,
   }),
   userMail: PropTypes.string,
+  selectActor: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -90,4 +100,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Tiles);
+export default connect(mapStateToProps, { selectActor })(Tiles);

@@ -11,17 +11,19 @@ import { addMovie } from '../../store/actions/dbAction';
 
 class MoviesList extends Component {
   render() {
-    const { state: { params } } = this.props.navigation;
-
+    const { navigate } = this.props.navigation;
+    const { actorId, actor, movies } = this.props;
 
     return(
       <View>
         <Text>
-          Movies list for {params.actor}
+          Movies list for {actor}
         </Text>
         <FilteredList
-          onPress={()=> {this.props.addMovie(params.actorId, 'sample');}}
-          itemsArray={this.props.movies[params.actorId]}
+          onPress={()=> {
+            navigate('AddMovie');
+          }}
+          itemsArray={movies[actorId]}
         />
       </View>
     );
@@ -30,20 +32,19 @@ class MoviesList extends Component {
 
 MoviesList.propTypes = {
   navigation: PropTypes.shape({
-    state: {
-      params: PropTypes.shape({
-        actorId: PropTypes.string,
-        actor: PropTypes.string,
-      }),
-    },
+    navigate: PropTypes.func,
   }),
   addMovie: PropTypes.func,
   movies: PropTypes.arrayOf(PropTypes.string),
+  actorId: PropTypes.string,
+  actor: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {
   return {
     movies: state.actorsDB.actors,
+    actorId: state.actorsDB.selectedActorId,
+    actor: state.actorsDB.selectedActorName,
   };
 };
 
