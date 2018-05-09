@@ -5,3 +5,4 @@ export * from './ItemList';
 export * from './Input';
 export * from './Spinner';
 export * from './LogoutSection';
+export * from './ListControlBar';

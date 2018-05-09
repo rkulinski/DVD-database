@@ -1,3 +1,8 @@
 {
-
+  "apiKey": "AIzaSyAc22yhV-hzDY9CgzDYVfVRBzB3g8NS0Q8",
+  "authDomain": "dvd-s-1bd70.firebaseapp.com",
+  "databaseURL": "https://dvd-s-1bd70.firebaseio.com",
+  "projectId": "dvd-s-1bd70",
+  "storageBucket": "dvd-s-1bd70.appspot.com",
+  "messagingSenderId": "365256592928"
 }
