@@ -19,7 +19,7 @@ describe('Testing FilteredList component', () => {
       itemsArray: [
         'abc',
         'def',
-        'ghi'
+        'ghi',
       ],
       renderItem: renderItemFn,
     };

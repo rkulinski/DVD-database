@@ -1,6 +1,7 @@
 import {
   DB_ADD_MOVIE,
   DB_SELECT_ACTOR,
+  DB_READ_ACTORS_SUCCESS,
 } from '../types';
 
 const INITIAL_STATE = {
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
   },
   selectedActorId: '',
   selectedActorName: '',
+  actorsDb: {},
 };
 
 export default (state=INITIAL_STATE, action) => {
@@ -33,6 +35,11 @@ export default (state=INITIAL_STATE, action) => {
       ...state,
       selectedActorId: action.payload.actorId,
       selectedActorName: action.payload.actor,
+    };
+  case DB_READ_ACTORS_SUCCESS:
+    return {
+      ...state,
+      actorsDb: action.payload,
     };
   default:
     return state;

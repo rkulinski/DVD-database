@@ -13,7 +13,6 @@ class MoviesList extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { actorId, actor, movies } = this.props;
-
     return(
       <View>
         <Text>
@@ -35,7 +34,7 @@ MoviesList.propTypes = {
     navigate: PropTypes.func,
   }),
   addMovie: PropTypes.func,
-  movies: PropTypes.arrayOf(PropTypes.string),
+  movies: PropTypes.shape({}),
   actorId: PropTypes.string,
   actor: PropTypes.string,
 };
