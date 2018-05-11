@@ -7,6 +7,7 @@ import {
   Platform,
 } from 'react-native';
 import firebase from 'firebase';
+import _ from 'underscore';
 import PropTypes from 'prop-types';
 import {
   ImageTapper,
@@ -14,20 +15,7 @@ import {
   LogoutSection,
 } from '../../components';
 import { selectActor } from '../../store/actions/dbAction';
-import ArnoldImg from '../../assets/tilesImages/Arnold.jpg';
-import StalloneImg from '../../assets/tilesImages/Stallone.jpg';
-import JCVDImg from '../../assets/tilesImages/JCVD.jpg';
-import Steven from '../../assets/tilesImages/Steven.jpg';
-import Chuck from '../../assets/tilesImages/Chuck.jpg';
 
-
-const actorNames = [
-  { id:'schwarzenegger' ,name:'Arnold Schwarzenegger', img: ArnoldImg},
-  { id:'stallone' ,name:'Sylwester Stallone', img: StalloneImg},
-  { id:'vanDamme' ,name:'Jean Claude Van Damme', img: JCVDImg},
-  { id:'seagal' ,name:'Steven Seagal', img: Steven},
-  { id:'norris' ,name:'Chuck Norris', img: Chuck},
-];
 
 class Tiles extends Component {
   constructor() {
@@ -35,11 +23,27 @@ class Tiles extends Component {
 
     this.onActorSelect = this.onActorSelect.bind(this);
   }
+
   onActorSelect(actorId, actor) {
     const { navigate } = this.props.navigation;
 
     this.props.selectActor(actorId, actor);
     navigate('MoviesList');
+  }
+
+  renderActors() {
+    console.log('whyyyyyyy');
+    const { actors } = this.props;
+    console.log(actors);
+
+    return _.values(_.mapObject(actors, (actor, id) => (
+      <ImageTapper
+        key={id}
+        title={actor.name}
+        imgSrc={actor.img}
+        onPress={() => this.onActorSelect(id, actor.name)}
+      />
+    )));
   }
 
   render() {
@@ -50,14 +54,7 @@ class Tiles extends Component {
         />
         <ScrollView>
           <View style={[styles.tilesView]}>
-            {actorNames.map(({id, name, img}) => (
-              <ImageTapper
-                key={name}
-                title={name}
-                imgSrc={img}
-                onPress={() => this.onActorSelect(id, name)}
-              />
-            ))}
+            {this.renderActors()}
           </View>
           <LogoutSection
             onLogout={() => {
@@ -76,6 +73,7 @@ Tiles.propTypes = {
   }),
   userMail: PropTypes.string,
   selectActor: PropTypes.func,
+  actors: PropTypes.shape({}),
 };
 
 const styles = StyleSheet.create({
@@ -97,6 +95,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     userMail: state.auth.email,
+    actors : state.actorsDB.actorsDb,
   };
 };
 

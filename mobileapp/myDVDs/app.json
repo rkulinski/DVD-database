@@ -1,4 +1,5 @@
 {
   "name": "myDVDs",
-  "displayName": "myDVDs"
+  "displayName": "myDVDs",
+  "icon": "app_ico.png"
 }

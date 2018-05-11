@@ -6,8 +6,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import firebase from 'firebase';
+import _ from 'underscore';
 import PropTypes from 'prop-types';
 import { initializeFirebase, isUserLoggedIn } from '../../store/actions/authAction';
+import { readActorsFromDatabase } from '../../store/actions/dbAction';
 import units from '../../utils/unitsCalculation';
 
 
@@ -18,20 +20,27 @@ class LoadingView extends Component {
 
   componentWillMount() {
     const { navigate } = this.props.navigation;
-    const { initializeFirebase, isUserLoggedIn } = this.props;
+    const { initializeFirebase, isUserLoggedIn, readActorsFromDatabase } = this.props;
 
     initializeFirebase();
-
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         isUserLoggedIn(true, user.email);
-        navigate('Tiles');
+        readActorsFromDatabase();
       } else {
         isUserLoggedIn(false, '');
         navigate('LoginForm');
       }
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { navigate } = this.props.navigation;
+
+    if (!_.isEmpty(nextProps.actors) && nextProps.email) {
+      navigate('Tiles');
+    }
   }
 
   render() {
@@ -52,6 +61,8 @@ LoadingView.propTypes = {
   }),
   initializeFirebase: PropTypes.func,
   isUserLoggedIn: PropTypes.func,
+  readActorsFromDatabase: PropTypes.func,
+  actors: PropTypes.shape({}),
 };
 
 const styles = StyleSheet.create({
@@ -66,4 +77,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(null, { initializeFirebase, isUserLoggedIn })(LoadingView);
+const mapStateToProps = (state) => {
+  return {
+    actors : state.actorsDB.actorsDb,
+    email: state.auth.email,
+  };
+};
+
+export default connect(mapStateToProps, { readActorsFromDatabase, initializeFirebase, isUserLoggedIn })(LoadingView);
