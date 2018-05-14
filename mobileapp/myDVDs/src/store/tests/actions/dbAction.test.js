@@ -17,15 +17,6 @@ describe('Database Actions:', () => {
   };
 
 
-  it('addMovie should return DB_ADD_MOVIE action', () => {
-    expect(ACTIONS.addMovie(actor, movieTitle)).toEqual({
-      type: TYPES.DB_ADD_MOVIE,
-      payload: {
-        actor,
-        movieTitle,
-      },
-    });
-  });
   it('selectActor should return DB_SELECT_ACTOR action', () => {
     expect(ACTIONS.selectActor(actorId, actor)).toEqual({
       type: TYPES.DB_SELECT_ACTOR,
@@ -46,6 +37,26 @@ describe('Database Actions:', () => {
       arni: {img: 'image'},
       sly: {img: 'image'},
       norris: {},
+    });
+  });
+  it('saveToDbRequest should return DB_SAVE_TO_DB_REQUEST action', () => {
+    expect(ACTIONS.saveToDbRequest()).toEqual({
+      type: TYPES.DB_SAVE_TO_DB_REQUEST,
+    });
+  });
+  it('saveToDbSuccess should return DB_SAVE_TO_DB_SUCCESS action', () => {
+    expect(ACTIONS.saveToDbSuccess()).toEqual({
+      type: TYPES.DB_SAVE_TO_DB_SUCCESS,
+    });
+  });
+  it('saveToDbError should return DB_SAVE_TO_DB_ERROR action', () => {
+    expect(ACTIONS.saveToDbError()).toEqual({
+      type: TYPES.DB_SAVE_TO_DB_ERROR,
+    });
+  });
+  it('safeToDbExists should return DB_SAVE_TO_DB_EXISTS action', () => {
+    expect(ACTIONS.safeToDbExists()).toEqual({
+      type: TYPES.DB_SAVE_TO_DB_EXISTS,
     });
   });
 });

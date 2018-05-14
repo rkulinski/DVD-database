@@ -4,12 +4,21 @@ import {
   View,
   Text,
 } from 'react-native';
+import _ from 'underscore';
 import PropTypes from 'prop-types';
 import { FilteredList } from '../../components';
 import { addMovie } from '../../store/actions/dbAction';
 
 
 class MoviesList extends Component {
+  getMoviesAsArray(mObj) {
+    return _.values(
+      _.mapObject(mObj, (val) => {
+        return `[${val.year}] ${val.title}`;
+      })
+    );
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     const { actorId, actor, movies } = this.props;
@@ -22,7 +31,7 @@ class MoviesList extends Component {
           onPress={()=> {
             navigate('AddMovie');
           }}
-          itemsArray={movies[actorId]}
+          itemsArray={this.getMoviesAsArray(movies[actorId].movies)}
         />
       </View>
     );
@@ -41,7 +50,7 @@ MoviesList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.actorsDB.actors,
+    movies: state.actorsDB.actorsDb,
     actorId: state.actorsDB.selectedActorId,
     actor: state.actorsDB.selectedActorName,
   };

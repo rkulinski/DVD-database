@@ -6,7 +6,7 @@ import {
   Button,
   StyleSheet,
 } from 'react-native';
-import { addMovie } from '../../store/actions/dbAction';
+import { saveMovieToDb } from '../../store/actions/dbAction';
 import { Input } from '../../components';
 
 class AddMovieView extends Component {
@@ -21,9 +21,9 @@ class AddMovieView extends Component {
   }
 
   addMovieAndGoToList() {
-    const { addMovie, actorId, navigation: { navigate } } = this.props;
+    const { actorId, navigation: { navigate } } = this.props;
     const { newTitle, year } = this.state;
-    addMovie(actorId, `[${year}] ${newTitle}`);
+    this.props.saveMovieToDb({ actorId ,newTitle, year });
     navigate('MoviesList');
   }
 
@@ -69,5 +69,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {addMovie})(AddMovieView);
+export default connect(mapStateToProps, { saveMovieToDb })(AddMovieView);
 export { AddMovieView as AddMovieViewNotConnected };

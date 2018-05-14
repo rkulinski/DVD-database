@@ -32,9 +32,7 @@ class Tiles extends Component {
   }
 
   renderActors() {
-    console.log('whyyyyyyy');
     const { actors } = this.props;
-    console.log(actors);
 
     return _.values(_.mapObject(actors, (actor, id) => (
       <ImageTapper

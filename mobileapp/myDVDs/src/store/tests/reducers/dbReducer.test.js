@@ -10,22 +10,9 @@ describe('Database Reducers Tests', () => {
   };
   const actor = 'schwarzenegger';
   const actorId = '111';
-  const movieTitle = 'movie';
+  const err = 'error';
 
-  it('should handle DB_ADD_MOVIE', () => {
-    const reducerResponse = dbReducer(INITIAL_STATE, {
-      type: TYPES.DB_ADD_MOVIE,
-      payload: {
-        actor,
-        movieTitle,
-      },
-    });
-    expect(reducerResponse).toEqual({
-      actors: {
-        schwarzenegger: [movieTitle],
-      },
-    });
-  });
+
   it('should handle DB_SELECT_ACTOR action type', () => {
     const reducerResponse = dbReducer({}, {
       type: TYPES.DB_SELECT_ACTOR,
@@ -46,6 +33,48 @@ describe('Database Reducers Tests', () => {
     });
     expect(reducerResponse).toEqual(({
       actorsDb: actor,
+    }));
+  });
+  it('should handle DB_SAVE_TO_DB_REQUEST action type', () => {
+    const reducerResponse = dbReducer({}, {
+      type: TYPES.DB_SAVE_TO_DB_REQUEST,
+    });
+    expect(reducerResponse).toEqual(({
+      savingMovie: true,
+      saveSuccessful: false,
+      existsInfo: '',
+      error: {},
+    }));
+  });
+  it('should handle DB_SAVE_TO_DB_SUCCESS action type', () => {
+    const reducerResponse = dbReducer({}, {
+      type: TYPES.DB_SAVE_TO_DB_SUCCESS,
+    });
+    expect(reducerResponse).toEqual(({
+      savingMovie: false,
+      saveSuccessful: true,
+    }));
+  });
+  it('should handle DB_SAVE_TO_DB_ERROR action type', () => {
+    const reducerResponse = dbReducer({}, {
+      type: TYPES.DB_SAVE_TO_DB_ERROR,
+      payload: err,
+    });
+    expect(reducerResponse).toEqual(({
+      savingMovie: false,
+      saveSuccessful: false,
+      error: err,
+    }));
+  });
+  it('should handle DB_SAVE_TO_DB_EXISTS action type', () => {
+    const reducerResponse = dbReducer({}, {
+      type: TYPES.DB_SAVE_TO_DB_EXISTS,
+      payload: { message: err },
+    });
+    expect(reducerResponse).toEqual(({
+      savingMovie: false,
+      saveSuccessful: false,
+      existsInfo: err,
     }));
   });
   it('should handle unknown action type', () => {
