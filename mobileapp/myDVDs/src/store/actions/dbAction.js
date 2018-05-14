@@ -1,9 +1,12 @@
 import firebase from 'firebase';
 import _ from 'underscore';
 import {
-  DB_ADD_MOVIE,
   DB_SELECT_ACTOR,
   DB_READ_ACTORS_SUCCESS,
+  DB_SAVE_TO_DB_REQUEST,
+  DB_SAVE_TO_DB_SUCCESS,
+  DB_SAVE_TO_DB_ERROR,
+  DB_SAVE_TO_DB_EXISTS,
 } from '../types';
 import ArnoldImg from '../../assets/tilesImages/Arnold.jpg';
 import StalloneImg from '../../assets/tilesImages/Stallone.jpg';
@@ -17,17 +20,6 @@ const imagesToActorMatcher = {
   vanDamme: JCVDImg,
   seagal: Steven,
   norris: Chuck,
-};
-
-
-export const addMovie = (actor, movieTitle) => {
-  return {
-    type: DB_ADD_MOVIE,
-    payload: {
-      actor,
-      movieTitle,
-    },
-  };
 };
 
 export const selectActor = (actorId, actor) => {
@@ -62,6 +54,54 @@ export const readActorsFromDatabase = () => {
       .on('value', snapshot => {
         const data = processActors(snapshot.val(), imagesToActorMatcher);
         dispatch(readActorsSuccess(data));
+      });
+  };
+};
+
+export const saveToDbRequest = () => {
+  return {
+    type: DB_SAVE_TO_DB_REQUEST,
+  };
+};
+
+export const saveToDbSuccess = () => {
+  return {
+    type: DB_SAVE_TO_DB_SUCCESS,
+  };
+};
+
+export const saveToDbError = (error) => {
+  return {
+    type: DB_SAVE_TO_DB_ERROR,
+    payload: error,
+  };
+};
+
+export const safeToDbExists = (error) => {
+  return {
+    type: DB_SAVE_TO_DB_EXISTS,
+    payload: error,
+  };
+};
+
+export const saveMovieToDb = ({ actorId, newTitle, year }) => {
+  return (dispatch) => {
+    dispatch(saveToDbRequest());
+    const movie_id = `${year}_${newTitle.toLowerCase()}`;
+    firebase.database().ref(`actors/${actorId}/movies/${movie_id}`)
+      .on('value', snapshot => {
+        if (snapshot.val() === null) {
+          firebase.database().ref(`actors/${actorId}/movies/`).push({
+            year: year,
+            title: newTitle,
+          }).then(() => {
+            dispatch(saveToDbSuccess());
+          }).catch((err) => {
+            dispatch(saveToDbError(err));
+          });
+        } else {
+          dispatch(safeToDbExists({message: 'This movie already exists in Database!'}));
+        }
       });
   };
 };

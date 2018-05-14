@@ -21,6 +21,8 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+ios/myDVDs.xcodeproj
+
 
 # Android/IntelliJ
 #
