@@ -84,6 +84,11 @@ export const safeToDbExists = (error) => {
   };
 };
 
+export const checkForDuplicate = ({ list, title, year }) => {
+  const values = Object.values(list);
+  //To be done
+};
+
 export const saveMovieToDb = ({ actorId, newTitle, year }) => {
   return (dispatch) => {
     dispatch(saveToDbRequest());
