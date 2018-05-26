@@ -15,7 +15,7 @@ const ItemList = ({item}) => (
   >
     <View style={[styles.listItem]}>
       <Text style={[styles.listTitle]}>
-        &#9900; {item}
+        {item}
       </Text>
       <Text style={[styles.listNextMarker]}>&#10095;</Text>
     </View>

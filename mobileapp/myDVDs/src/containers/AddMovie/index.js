@@ -21,10 +21,11 @@ class AddMovieView extends Component {
   }
 
   addMovieAndGoToList() {
-    const { actorId, navigation: { navigate } } = this.props;
+    const { actorId, navigation: { navigate }, navigation } = this.props;
     const { newTitle, year } = this.state;
     this.props.saveMovieToDb({ actorId ,newTitle, year });
-    navigate('MoviesList');
+    navigation.pop(1);
+    console.log('WHYYY');
   }
 
   render() {
@@ -44,7 +45,7 @@ class AddMovieView extends Component {
           onChangeText={year => this.setState({ year })}
         />
         <Button
-          onPress={() => {this.addMovieAndGoToList();}}
+          onPress={this.addMovieAndGoToList}
           title="Add movie"
         />
       </View>

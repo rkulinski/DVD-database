@@ -30,9 +30,7 @@ exports[`Testing Header component renders as expected 1`] = `
           },
         ]
       }
-    >
-      ⚬ 
-    </Text>
+    />
     <Text
       accessible={true}
       allowFontScaling={true}
