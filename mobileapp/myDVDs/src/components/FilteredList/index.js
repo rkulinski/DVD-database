@@ -58,6 +58,7 @@ class FilteredList extends Component {
         </View>
         <FlatList
           data={this.state.filteredList}
+          ListFooterComponent={<View style={{height: 40}}/>}
           renderItem={({item}) => <ItemList item={item}/>}
         />
       </View>
@@ -72,6 +73,7 @@ FilteredList.propTypes = {
 
 const styles = StyleSheet.create({
   view: {
+    flex: 1,
     width: '100%',
   },
   serchView: {
@@ -90,10 +92,15 @@ const styles = StyleSheet.create({
     height: 40,
     padding: 10,
     marginLeft: 5,
+    marginTop: 5,
     fontSize: 5 * units.vw,
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
+  },
+  list: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
   },
 });
 

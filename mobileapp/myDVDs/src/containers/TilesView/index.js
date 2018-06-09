@@ -25,10 +25,10 @@ class Tiles extends Component {
   }
 
   onActorSelect(actorId, actor) {
-    const { navigate } = this.props.navigation;
+    const { push } = this.props.navigation;
 
     this.props.selectActor(actorId, actor);
-    navigate('MoviesList');
+    push('MoviesList', {actor});
   }
 
   renderActors() {
@@ -47,14 +47,12 @@ class Tiles extends Component {
   render() {
     return (
       <View style={[styles.container]}>
-        <Header
-          text={`My DVD's list (${this.props.userMail})`}
-        />
         <ScrollView>
           <View style={[styles.tilesView]}>
             {this.renderActors()}
           </View>
           <LogoutSection
+            username={this.props.userMail}
             onLogout={() => {
               firebase.auth().signOut();
             }}
@@ -77,6 +75,7 @@ Tiles.propTypes = {
 const styles = StyleSheet.create({
   container: {
     paddingTop: (Platform.OS === 'ios') ? 0 : 0,
+    paddingBottom: 5,
     flex: 1,
   },
   tilesView: {
