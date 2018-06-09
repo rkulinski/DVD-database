@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   View,
-  Text,
+  StyleSheet,
 } from 'react-native';
 import _ from 'underscore';
 import PropTypes from 'prop-types';
@@ -20,16 +20,13 @@ class MoviesList extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { push } = this.props.navigation;
     const { actorId, actor, movies } = this.props;
     return(
-      <View>
-        <Text>
-          Movies list for {actor}
-        </Text>
+      <View  style={[styles.container]}>
         <FilteredList
           onPress={()=> {
-            navigate('AddMovie');
+            push('AddMovie');
           }}
           itemsArray={this.getMoviesAsArray(movies[actorId].movies)}
         />
@@ -47,6 +44,12 @@ MoviesList.propTypes = {
   actorId: PropTypes.string,
   actor: PropTypes.string,
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 const mapStateToProps = (state) => {
   return {

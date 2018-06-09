@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 5 * units.vw,
     textAlign: 'center',
-  }
+  },
 });
 
 const mapStateToProps = (state) => {

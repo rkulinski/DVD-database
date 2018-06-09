@@ -6,8 +6,8 @@ exports[`Testing LogoutSection component renders as expected 1`] = `
     Array [
       Object {
         "flex": 1,
-        "height": 100,
-        "marginTop": 25,
+        "height": 30,
+        "marginBottom": 5,
       },
     ]
   }
@@ -23,7 +23,7 @@ exports[`Testing LogoutSection component renders as expected 1`] = `
         },
       ]
     }
-    title="Logout"
+    title="Logout (undefined)"
   />
 </Component>
 `;

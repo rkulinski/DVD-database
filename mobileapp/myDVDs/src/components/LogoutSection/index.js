@@ -6,11 +6,11 @@ import {
 } from 'react-native';
 
 
-const LogoutSection = ({ onLogout }) => {
+const LogoutSection = ({ onLogout, username }) => {
   return(
     <View style={[styles.container]}>
       <Button
-        title="Logout"
+        title={`Logout (${username})`}
         onPress={onLogout}
         style={[styles.button]}
       />
@@ -20,8 +20,8 @@ const LogoutSection = ({ onLogout }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 100,
-    marginTop: 25,
+    height: 30,
+    marginBottom: 5,
   },
 
   button: {
