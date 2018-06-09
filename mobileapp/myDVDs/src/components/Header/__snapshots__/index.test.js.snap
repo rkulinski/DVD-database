@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Header component renders as expected 1`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "height": 52.5,
+        "width": "100%",
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontSize": 37.5,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        },
+      ]
+    }
+  />
+</Component>
+`;

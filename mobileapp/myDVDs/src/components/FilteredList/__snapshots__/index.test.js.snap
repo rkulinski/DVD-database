@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing FilteredList component Default props renders as expected 1`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "width": "100%",
+      },
+    ]
+  }
+>
+  <Component
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Search..."
+      style={
+        Array [
+          Object {
+            "borderColor": "black",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "fontSize": 37.5,
+            "height": 40,
+            "marginLeft": 5,
+            "padding": 10,
+            "width": "80%",
+          },
+        ]
+      }
+      value=""
+    />
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Array [
+          Object {
+            "justifyContent": "center",
+            "width": "20%",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontSize": 30,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        +
+      </Text>
+    </TouchableOpacity>
+  </Component>
+  <FlatList
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReachedThreshold={2}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+</Component>
+`;

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing LogoutSection component renders as expected 1`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "flex": 1,
+        "height": 100,
+        "marginTop": 25,
+      },
+    ]
+  }
+>
+  <Button
+    onPress={[MockFunction]}
+    style={
+      Array [
+        Object {
+          "color": "black",
+          "paddingTop": 5,
+          "textAlign": "center",
+        },
+      ]
+    }
+    title="Logout"
+  />
+</Component>
+`;

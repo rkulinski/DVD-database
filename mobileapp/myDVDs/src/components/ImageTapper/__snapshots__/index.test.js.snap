@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Header component renders as expected 1`] = `
+<Component
+  style={
+    Array [
+      Object {
+        "height": 200,
+        "marginBottom": 5,
+        "width": "49%",
+      },
+    ]
+  }
+>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    title="title"
+  >
+    <Image
+      reziseMode="stretch"
+      style={
+        Array [
+          Object {
+            "height": 180,
+            "width": "100%",
+          },
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "black",
+            "paddingTop": 5,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      title
+    </Text>
+  </TouchableOpacity>
+</Component>
+`;
