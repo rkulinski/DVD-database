@@ -19,7 +19,7 @@ class LoadingView extends Component {
   }
 
   componentWillMount() {
-    const { navigate } = this.props.navigation;
+    const { push } = this.props.navigation;
     const { initializeFirebase, isUserLoggedIn, readActorsFromDatabase } = this.props;
 
     initializeFirebase();
@@ -30,16 +30,16 @@ class LoadingView extends Component {
         readActorsFromDatabase();
       } else {
         isUserLoggedIn(false, '');
-        navigate('LoginForm');
+        push('LoginForm');
       }
     });
   }
 
   componentWillReceiveProps(nextProps) {
-    const { navigate } = this.props.navigation;
+    const { replace } = this.props.navigation;
 
     if (!_.isEmpty(nextProps.actors) && nextProps.email) {
-      navigate('Tiles');
+      replace('Tiles');
     }
   }
 

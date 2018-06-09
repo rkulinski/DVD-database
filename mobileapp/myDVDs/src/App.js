@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import reducers from './store/reducers';
 import Tiles from './containers/TilesView';
 import MoviesList from './containers/MoviesList';
@@ -11,7 +11,7 @@ import LoadingView from './containers/LoadingView';
 import AddMovieView from './containers/AddMovie';
 
 
-const Navigator = StackNavigator({
+const Navigator = createStackNavigator({
   LoadingView: {
     screen: LoadingView,
     navigationOptions: {
@@ -32,8 +32,10 @@ const Navigator = StackNavigator({
   },
   MoviesList: {
     screen: MoviesList,
-    navigationOptions: {
-      title: 'Movie list',
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: navigation.state.params.actor,
+      };
     },
   },
   AddMovie: {

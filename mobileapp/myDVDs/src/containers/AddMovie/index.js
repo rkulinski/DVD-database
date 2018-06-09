@@ -21,11 +21,10 @@ class AddMovieView extends Component {
   }
 
   addMovieAndGoToList() {
-    const { actorId, navigation: { navigate }, navigation } = this.props;
+    const { actorId, navigation: { goBack } } = this.props;
     const { newTitle, year } = this.state;
     this.props.saveMovieToDb({ actorId ,newTitle, year });
-    navigation.pop(1);
-    console.log('WHYYY');
+    goBack(null);
   }
 
   render() {
